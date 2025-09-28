@@ -20,6 +20,7 @@ gcc --version
 
 @REM set CMAKE_GENERATOR="MinGW Makefiles"
 @REM set CMAKE_ARGS=-DCMAKE_C_COMPILER=gcc.exe -DCMAKE_CXX_COMPILER=g++.exe
+@REM python -m pip install -r requirements.txt -C cmake.args="-DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++"
 python -m pip install --upgrade pip
-python -m pip install -r requirements.txt -C cmake.args="-DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++"
+python -m pip install -r requirements.txt
 pause

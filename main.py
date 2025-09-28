@@ -96,12 +96,14 @@
 
 
 import openai
+import time
 
 client = openai.OpenAI(
     base_url="http://localhost:8080/v1", # "http://<Your api-server IP>:port"
     api_key = "sk-no-key-required"
 )
 
+start_time = time.time()
 completion = client.chat.completions.create(
   model="gpt-3.5-turbo",
   messages=[
@@ -111,3 +113,4 @@ completion = client.chat.completions.create(
 )
 
 print(completion.choices[0].message)
+print("--- %s seconds ---" % (time.time() - start_time))
