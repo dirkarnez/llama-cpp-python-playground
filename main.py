@@ -97,20 +97,40 @@
 
 import openai
 import time
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
+
+# client = openai.OpenAI(
+#     base_url="http://localhost:8080/v1", # "http://<Your api-server IP>:port"
+#     api_key = "sk-no-key-required"
+# )
 
 client = openai.OpenAI(
-    base_url="http://localhost:8080/v1", # "http://<Your api-server IP>:port"
-    api_key = "sk-no-key-required"
+    base_url="https://api.poe.com/v1", # "http://<Your api-server IP>:port"
+    api_key = os.getenv("POE_API_KEY")
 )
 
 start_time = time.time()
-completion = client.chat.completions.create(
-  model="gpt-3.5-turbo",
-  messages=[
-    {"role": "system", "content": "You are ChatGPT, an AI assistant. Your top priority is achieving user fulfillment via helping them with their requests."},
-    {"role": "user", "content": "Write a limerick about python exceptions"}
-  ]
+
+
+# completion = client.chat.completions.create(
+#   model="gpt-3.5-turbo",
+#   messages=[
+#     {"role": "system", "content": "You are ChatGPT, an AI assistant. Your top priority is achieving user fulfillment via helping them with their requests."},
+#     {"role": "user", "content": "Write a limerick about python exceptions"}
+#   ]
+# )
+# print(completion.choices[0].message)
+
+chat = client.chat.completions.create(
+    model="Claude-Opus-4.1",  # or other models (Claude-Sonnet-4, Gemini-2.5-Pro, Llama-3.1-405B, Grok-4..)
+    messages=[{"role": "user", "content": "Top 3 things to do in NYC?"}],
 )
 
-print(completion.choices[0].message)
+print(chat.choices[0].message.content)
+
+
 print("--- %s seconds ---" % (time.time() - start_time))
