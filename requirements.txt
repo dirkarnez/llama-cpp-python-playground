@@ -1,2 +1,5 @@
 openai==1.109.1
 python-dotenv==1.1.1
+langchain==1.2.7
+langchain-openai==1.1.7
+langchain-community==0.4.1
